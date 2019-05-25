@@ -18,7 +18,7 @@
 	}
 </style>
 </head>
-<body onload="setStartAndEnd()">
+<body>
 
 	<div class="bg-contact100" style="background-image: url('images/bg-01.jpg');">
 		<div class="container-contact100">
@@ -253,14 +253,14 @@ function fsidVal(Value)
 			return false;
 		}
 }
-	var json3 = {fid:fid,sid:sid,fprize:fprize,fdiscount:fdiscount,fname:fname};
+	//var json3 = {fid:fid,sid:sid,fprize:fprize,fdiscount:fdiscount,fname:fname};
 
 																                	$.ajax({
 																		                url: 'http://localhost:8080/foods/food'+fid,
 																		                type: 'DELETE',
-																		                contentType:'application/json',
-																		                data: JSON.stringify(json3),
-																		                dataType: 'json',
+																		                //contentType:'application/json',
+																		               // data: JSON.stringify(json3),
+																		               // dataType: 'json',
 																		                success: function(response)
 																		                {	
 																		                	
