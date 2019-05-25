@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Food Inventory</title>
+	
+	<link rel="icon" type="image/png" href="images/icon.png"/>
+
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+
+<style type="text/css">
+	.a{
+		font-weight: 900;
+		color: #fff;
+		font-size: 26px;
+	}
+</style>
+</head>
+<body onload="setStartAndEnd()">
+
+	<div class="bg-contact100" style="background-image: url('images/bg-01.jpg');">
+		<div class="container-contact100">
+			<div class="container">
+				<div align="center">
+					<img src="images/icon.png" width="10%" >
+					<h1 style="text-decoration: solid;font-size: -webkit-xxx-large;">Food Inventory</h1>
+				</div>
+			
+			 <div class="form-group">
+				      
+				      <input type="text" class="form-control" id="fid"  placeholder="Food ID" >
+				    </div>
+					
+				   <div class="form-group">
+				      
+				      <input type="text" class="form-control" id="name"  placeholder="First Name" >
+				    </div>
+
+				    <div class="form-group">
+				     
+				      <input type="text"  placeholder="Description" class="form-control" id="description" >
+				    </div>
+
+				    <div class="form-group">
+				      
+				      <input type="text"   placeholder="Prize" class="form-control" id="prize"  >
+				    </div>
+					  <div class="form-group">
+				      
+				      <input type="text"   placeholder="Discount" class="form-control" id="discount"  >
+				    </div>
+				  <div class="form-group">
+				     <div class="form-group">
+				      
+				      <input type="text"   placeholder="Supplier ID" class="form-control" id="sid"  >
+				    </div>
+				  <div class="form-row">
+
+				</div>
+				    <div align="center">
+				    	<button type="button" class="btn btn-primary" onclick="submit2()" style="width: 30%">Submit</button>
+						
+				    </div>
+				  
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<script src="js/bootbox/bootbox.all.min.js"></script>
+
+<script type="text/javascript">
+	
+	function submit2() {
+		let fid=document.getElementById("fid").value;
+		let fname=document.getElementById("name").value;
+		let fdescription=document.getElementById("description").value;
+		let fPrize=document.getElementById("Prize").value;
+		let fDiscount=document.getElementById("description").value;
+		let fsid=document.getElementById("sid").value;
+		
+				if(fidVal(fid))
+						if(fnameVal(fname))
+							if(fdescriptionVal(fdescription))
+								if(fPrizeVal(fPrize))
+									if(fDiscountVal(fDiscount))
+									    if(fsidVal(fsid))
+											
+																					
+															return true;
+													else
+														return false;
+												else
+													return false;
+											else
+												return false;
+										else
+											return false;
+									else
+										return false;
+								else
+									return false;
+							
+			
+}
+
+function isEmpty(Value, field)
+{
+		if(Value=="" || Value== null)
+		{
+			alert("Should fill " +field +  " field");
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+}
+
+function fidVal(Value)
+{
+		if(!isEmpty(Value,"Food ID"))
+		{
+			var eq= /^[0-9]+$/;
+			if(Value.match(eq))
+			{
+				return true;
+			}
+			else
+			{
+				alert("Enter a valid Food ID");
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+}
+
+function fnameVal(Value)
+{
+		var eq= /^[a-zA-Z. ]+$/;
+		if(!isEmpty(Value,"Full Name"))
+		{
+			if(Value.match(eq))
+			{
+				return true;
+			}
+			else
+			{
+				alert("Enter only text for Name");
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+}
+
+function fdescriptionVal(Value)
+{
+		var eq= /^[a-zA-Z. ]+$/;
+		if(!isEmpty(Value,"Description"))
+		{
+			if(Value.match(eq))
+			{
+				return true;
+			}
+			else
+			{
+				alert("Enter only text for Description");
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+}
+
+function fPrizeVal(Value)
+{
+		if(!isEmpty(Value,"Prize"))
+		{
+			var eq= /^[0-9]+$/;
+			if(Value.match(eq))
+			{
+				return true;
+			}
+			else
+			{
+				alert("Enter a valid Prize");
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+}
+	
+function fDiscountVal(Value)
+{
+		if(!isEmpty(Value,"Discount"))
+		{
+			var eq= /^[0-9]+$/;
+			if(Value.match(eq))
+			{
+				return true;
+			}
+			else
+			{
+				alert("Enter a valid Discount");
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+}
+
+function fsidVal(Value)
+{
+		if(!isEmpty(Value,"Supplier ID"))
+		{
+			var eq= /^[0-9]+$/;
+			if(Value.match(eq))
+			{
+				return true;
+			}
+			else
+			{
+				alert("Enter a valid Supplier ID");
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+}
+	var json3 = {fid:fid,sid:sid,fprize:fprize,fdiscount:fdiscount,fname:fname};
+
+																                	$.ajax({
+																		                url: 'http://localhost:8080/foods/food',
+																		                type: 'POST',
+																		                contentType:'application/json',
+																		                data: JSON.stringify(json3),
+																		                dataType: 'json',
+																		                success: function(response)
+																		                {	
+																		                	
+																		                	console.log(response);
+																		                	alert('add ok')
+
+																		                	
+
+																		                	
+																		                },
+																		                error: function(response) {
+																							console.log(response); 
+																						}
+																							
+																							
+																		         	});	
+</script>	
+</body>
+</html>
